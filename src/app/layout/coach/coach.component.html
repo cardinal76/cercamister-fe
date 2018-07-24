@@ -1,12 +1,14 @@
 <div class="row">
     <div class="col-lg-8 offset-lg-2">
     	<div class="card bg-light mb-3">
-                <div class="card-header">Allenatore</div>
+                <div class="card-header">{{inserimentoFormAllenatore}}</div>
                 <div class="card-body">
-        <form role="form">
+        <form role="form" [formGroup]="form">
             <fieldset class="form-group">
                 <label>Tipo Licenza</label>
-                <select class="form-control">
+                <select class="form-control" 
+                		formControlName="tipoLicenza"
+                	    [ngClass]="{ 'is-invalid': submitted && f.tipoLicenza.errors }">
                     <option>ioioio o io io io </option>
                     <option>ioioio o io io io </option>
                     <option>ioioio o io io io </option>
@@ -17,44 +19,62 @@
             
             <fieldset class="form-group">
                 <label>Nome</label>
-                <input class="form-control" placeholder="Nome">
+                <input class="form-control" 
+                	   placeholder="Nome" 
+                	   formControlName="nome"
+                	   [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">                
             </fieldset>    
             
             <fieldset class="form-group">
                 <label>Cognome</label>
-                <input class="form-control" placeholder="Cognome">
+                <input class="form-control" 
+                	   placeholder="Cognome" 
+                	   formControlName="cognome"
+                	   [ngClass]="{ 'is-invalid': submitted && f.cognome.errors }">
             </fieldset>
             
             <fieldset class="form-group">
                 <label>Regione</label>
-                <select class="form-control">
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
+                <select class="form-control"
+                		[(ngModel)]="regioneCtrl"
+                		formControlName="regione"
+                		[ngClass]="{ 'is-invalid': submitted && f.regione.errors }">
+                	<option value="">-- SELEZIONA --</option>
+                    <option value="1">ioioio o io io io </option>
+                    <option value="2">ioioio o io io io </option>
+                    <option value="3">ioioio o io io io </option>
+                    <option value="4">ioioio o io io io </option>
+                    <option value="5">ioioio o io io io </option>
                 </select>
             </fieldset>  
             
-            <fieldset class="form-group">
+            <fieldset class="form-group" [hidden]="!regioneCtrl" >
                 <label>Provincia</label>
-                <select class="form-control">
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
+                <select class="form-control"
+                		[(ngModel)]="provinciaCtrl"
+                		formControlName="provincia"
+                		[ngClass]="{ 'is-invalid': submitted && f.provincia.errors }">
+                		>
+                	<option value="">-- SELEZIONA --</option>
+                    <option value="1">ioioio o io io io </option>
+                    <option value="2">ioioio o io io io </option>
+                    <option value="3">ioioio o io io io </option>
+                    <option value="4">ioioio o io io io </option>
+                    <option value="5">ioioio o io io io </option>
                 </select>
             </fieldset>  
             
-            <fieldset class="form-group">
+            <fieldset class="form-group" [hidden]="!provinciaCtrl">
                 <label>Comune</label>
-                <select class="form-control">
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
+                <select class="form-control"
+                		formControlName="comune"
+                		[ngClass]="{ 'is-invalid': submitted && f.comune.errors }">
+                	<option value="">-- SELEZIONA --</option>
+                    <option value="1">ioioio o io io io </option>
+                    <option value="2">ioioio o io io io </option>
+                    <option value="3">ioioio o io io io </option>
+                    <option value="4">ioioio o io io io </option>
+                    <option value="5">ioioio o io io io </option>
                 </select>
             </fieldset>  
             
@@ -62,8 +82,11 @@
               <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">@</span>
               </div>
-              <!-- <span class="input-group-addon">@</span> -->
-              <input type="text" class="form-control" placeholder="Username">
+              <input type="text" 
+              		 class="form-control" 
+              		 placeholder="Email" 
+              		 formControlName="email"
+                	 [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
             </div>
 
             
@@ -85,7 +108,7 @@
                </div>
            </div>
            
-           <button id="btnFA-" class="btn btn-success pull-right">
+           <button id="btnFA-" type="submit" [disabled]="disabledSubmit" (click)="inviaRegistrazione($event)" class="btn btn-success pull-right">
 				<i class="fa fa-play-circle"></i>
 					Registrate
 		   </button>
