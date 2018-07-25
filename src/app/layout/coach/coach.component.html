@@ -9,11 +9,7 @@
                 <select class="form-control" 
                 		formControlName="tipoLicenza"
                 	    [ngClass]="{ 'is-invalid': submitted && f.tipoLicenza.errors }">
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
-                    <option>ioioio o io io io </option>
+                	<option *ngFor="let tipoLicenza of tipoLicenze" value="{{tipoLicenza.codiceTipoLicenza}}">{{tipoLicenza.descrizioneTipoLicenza}}</option>    
                 </select>
             </fieldset>         
             
@@ -38,13 +34,10 @@
                 <select class="form-control"
                 		[(ngModel)]="regioneCtrl"
                 		formControlName="regione"
-                		[ngClass]="{ 'is-invalid': submitted && f.regione.errors }">
-                	<option value="">-- SELEZIONA --</option>
-                    <option value="1">ioioio o io io io </option>
-                    <option value="2">ioioio o io io io </option>
-                    <option value="3">ioioio o io io io </option>
-                    <option value="4">ioioio o io io io </option>
-                    <option value="5">ioioio o io io io </option>
+                		[ngClass]="{ 'is-invalid': submitted && f.regione.errors }"
+                		(change)="selezioneProvincie($event)">
+                	<option value="">-- SELEZIONA --</option>	
+                    <option *ngFor="let regione of regioni" value="{{regione.codiceRegione}}">{{regione.descrizioneRegione}}</option>                   
                 </select>
             </fieldset>  
             
@@ -53,14 +46,11 @@
                 <select class="form-control"
                 		[(ngModel)]="provinciaCtrl"
                 		formControlName="provincia"
-                		[ngClass]="{ 'is-invalid': submitted && f.provincia.errors }">
+                		[ngClass]="{ 'is-invalid': submitted && f.provincia.errors }"
+                		(change)="selezioneComuni($event)">
                 		>
-                	<option value="">-- SELEZIONA --</option>
-                    <option value="1">ioioio o io io io </option>
-                    <option value="2">ioioio o io io io </option>
-                    <option value="3">ioioio o io io io </option>
-                    <option value="4">ioioio o io io io </option>
-                    <option value="5">ioioio o io io io </option>
+                	<option value="">-- SELEZIONA --</option>	
+                	<option *ngFor="let provincia of provincie" value="{{provincia.codiceProvincia}}">{{provincia.descrizioneProvincia}}</option>
                 </select>
             </fieldset>  
             
@@ -70,11 +60,7 @@
                 		formControlName="comune"
                 		[ngClass]="{ 'is-invalid': submitted && f.comune.errors }">
                 	<option value="">-- SELEZIONA --</option>
-                    <option value="1">ioioio o io io io </option>
-                    <option value="2">ioioio o io io io </option>
-                    <option value="3">ioioio o io io io </option>
-                    <option value="4">ioioio o io io io </option>
-                    <option value="5">ioioio o io io io </option>
+                    <option *ngFor="let comune of comuni" value="{{comune.codiceComune}}">{{comune.descrizioneComune}}</option>
                 </select>
             </fieldset>  
             
